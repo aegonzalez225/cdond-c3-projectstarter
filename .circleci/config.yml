@@ -80,16 +80,16 @@ jobs:
                 --tags project=udapeople
                 exit 1
 
-#      - run:
-#          name: Ensure front-end infrastructure exist
-#          command: |
-#            aws cloudformation deploy \
-#                --template-file .circleci/files/frontend.yml \
-#                --region "us-east-2" \
-#                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
-#                --parameter-overrides ID="kk1j287dhjppmz437" \
-#                --tags project=udapeople
-#                exit 1
+      - run:
+          name: Ensure front-end infrastructure exist
+          command: |
+            aws cloudformation deploy \
+                --template-file .circleci/files/frontend.yml \
+                --region "us-east-2" \
+                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
+                --parameter-overrides ID="kk1j287dhjppmz437" \
+                --tags project=udapeople
+                exit 1
       - run:
           name: Add back-end ip to ansible inventory
           command: |
@@ -99,7 +99,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      - describe-events
+#      - describe-events
       - delete-aws
 
 
