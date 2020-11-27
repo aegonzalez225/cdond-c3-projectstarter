@@ -1,6 +1,21 @@
 version: 2.1
 
 commands:
+  describe-events:
+    description: describe events
+    steps:
+      - run:
+          name: Delete events on stack
+          command: |
+            if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
+            then 
+              aws cloudformation describe-stack-events --stack-name udapeople-frontend-kk1j287dhjppmz437
+            fi
+            if aws cloudformation wait stack-exists --stack-name udapeople-backend-kk1j287dhjppmz437
+            then 
+              aws cloudformation describe-stack-events --stack-name udapeople-backend-kk1j287dhjppmz437
+            fi
+          when: on_fail  
 
   delete-aws:
     description: Delete stacks of aws services
@@ -83,6 +98,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
+      - describe-events
       - delete-aws
 
 
