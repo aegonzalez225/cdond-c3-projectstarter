@@ -1,6 +1,22 @@
 version: 2.1
 
 commands:
+
+  delete-aws:
+    description: Delete stacks of aws services
+    steps:
+      - run:
+          name: Delete stacks of aws services
+          command: |
+            if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
+            then 
+              aws cloudformation delete-stack --stack-name udapeople-frontend-kk1j287dhjppmz437
+            fi
+            if aws cloudformation wait stack-exists --stack-name udapeople-backend-kk1j287dhjppmz437
+            then 
+              aws cloudformation delete-stack --stack-name udapeople-backend-kk1j287dhjppmz437
+            fi
+          when: on_fail  
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
@@ -39,26 +55,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Delete stacks of aws services
-          command: |
-            if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
-            then 
-              aws cloudformation delete-stack --stack-name udapeople-frontend-kk1j287dhjppmz437
-            fi
-            if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
-            then 
-              aws cloudformation delete-stack --stack-name udapeople-frontend-kk1j287dhjppmz437
-            fi
-            
-      
-      - run:
           name: Ensure back-end infrastructure exists
           command: |
             aws cloudformation deploy \
                 --template-file .circleci/files/backend.yml \
                 --tags project=cdond-c3-projectstarter \
                 --region "us-east-2" \
-                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
+                --stack-name udapeople-backend-kk1j287dhjppmz437 \
                 --parameter-overrides ID="kk1j287dhjppmz437"
 
       - run:
@@ -68,7 +71,7 @@ jobs:
                 --template-file .circleci/files/frontend.yml \
                 --tags project=cdond-c3-projectstarter \
                 --region "us-east-2" \
-                --stack-name udapeople-backend-kk1j287dhjppmz437 \
+                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
                 --parameter-overrides ID="kk1j287dhjppmz437"
 
       - run:
@@ -80,7 +83,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-
+      -delete-aws
 
 
   build-frontend:
