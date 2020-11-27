@@ -38,14 +38,14 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run:
-          name: Ensure back-end infrastructure exists
-          command: |
-            aws cloudformation deploy \
-              --template-file .circleci/files/backend.yml \
-              --tags project=cdond-c3-projectstarter \
-              --stack-name udapeople-frontend-kk1j287dhjppmz437 \
-              --parameter-overrides ID=kk1j287dhjppmz437  
+#      - run:
+#          name: Ensure back-end infrastructure exists
+#          command: |
+#            aws cloudformation deploy \
+#              --template-file .circleci/files/backend.yml \
+#              --tags project=cdond-c3-projectstarter \
+#              --stack-name udapeople-frontend-kk1j287dhjppmz437 \
+#              --parameter-overrides ID=kk1j287dhjppmz437  
 
       - run:
           name: Ensure front-end infrastructure exist

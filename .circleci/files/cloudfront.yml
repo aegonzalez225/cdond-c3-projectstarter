@@ -2,7 +2,7 @@ Description: >
   Cloudfront distribution for UdaPeople.
 
 Parameters:
-  WorkflowID: kk1j287dhjppmz437
+  WorkflowID:kk1j287dhjppmz437
     Description: Unique identifier.
     Type: String
 
@@ -33,7 +33,7 @@ Resources:
           ViewerProtocolPolicy: allow-all
 
 Outputs:
-  WorkflowID:
+  WorkflowID:kk1j287dhjppmz437
     Value: !Sub ${WorkflowID}
     Description: URL for website hosted on S3
     Export:
