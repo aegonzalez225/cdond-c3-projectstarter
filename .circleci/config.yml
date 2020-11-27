@@ -44,8 +44,9 @@ jobs:
             aws cloudformation deploy \
                 --template-file .circleci/files/backend.yml \
                 --tags project=cdond-c3-projectstarter \
+                --region "us-east-2" \
                 --stack-name udapeople-frontend-kk1j287dhjppmz438 \
-                --region "us-east-2" 
+                --parameter-overrides ID="kk1j287dhjppmz438"
 
       - run:
           name: Ensure front-end infrastructure exist
@@ -53,8 +54,9 @@ jobs:
             aws cloudformation deploy \
                 --template-file .circleci/files/frontend.yml \
                 --tags project=cdond-c3-projectstarter \
+                --region "us-east-2" \
                 --stack-name udapeople-backend-kk1j287dhjppmz438 \
-                --region "us-east-2" 
+                --parameter-overrides ID="kk1j287dhjppmz438"
 
       - run:
           name: Add back-end ip to ansible inventory
