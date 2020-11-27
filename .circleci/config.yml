@@ -38,6 +38,19 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      -run:
+          name: Delete stacks of aws services
+          command: |
+            if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
+            then 
+              aws cloudformation delete-stack --stack-name udapeople-frontend-kk1j287dhjppmz437
+            fi
+            if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
+            then 
+              aws cloudformation delete-stack --stack-name udapeople-frontend-kk1j287dhjppmz437
+            fi
+            
+      
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -45,8 +58,8 @@ jobs:
                 --template-file .circleci/files/backend.yml \
                 --tags project=cdond-c3-projectstarter \
                 --region "us-east-2" \
-                --stack-name udapeople-frontend-kk1j287dhjppmz439 \
-                --parameter-overrides ID="kk1j287dhjppmz438"
+                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
+                --parameter-overrides ID="kk1j287dhjppmz437"
 
       - run:
           name: Ensure front-end infrastructure exist
@@ -55,8 +68,8 @@ jobs:
                 --template-file .circleci/files/frontend.yml \
                 --tags project=cdond-c3-projectstarter \
                 --region "us-east-2" \
-                --stack-name udapeople-backend-kk1j287dhjppmz439 \
-                --parameter-overrides ID="kk1j287dhjppmz438"
+                --stack-name udapeople-backend-kk1j287dhjppmz437 \
+                --parameter-overrides ID="kk1j287dhjppmz437"
 
       - run:
           name: Add back-end ip to ansible inventory
