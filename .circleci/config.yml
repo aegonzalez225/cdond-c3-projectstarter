@@ -45,7 +45,7 @@ jobs:
                 --template-file .circleci/files/backend.yml \
                 --tags project=cdond-c3-projectstarter \
                 --stack-name udapeople-frontend-kk1j287dhjppmz437 \
-                --parameters EnvParameter=prod              
+                --region "us-east-2" 
 
       - run:
           name: Ensure front-end infrastructure exist
@@ -54,7 +54,7 @@ jobs:
                 --template-file .circleci/files/frontend.yml \
                 --tags project=cdond-c3-projectstarter \
                 --stack-name udapeople-backend-kk1j287dhjppmz437 \
-                --parameters EnvParameter=prod              
+                --region "us-east-2" 
 
       - run:
           name: Add back-end ip to ansible inventory
