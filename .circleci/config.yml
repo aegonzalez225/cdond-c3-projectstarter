@@ -83,7 +83,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      -delete-aws
+      - delete-aws
 
 
   build-frontend:
