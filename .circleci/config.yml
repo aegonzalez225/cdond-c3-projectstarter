@@ -43,7 +43,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
-              --tags project= 'cdond-c3-projectstarter' \
+              --tags project= cdond-c3-projectstarter \
               --stack-name udapeople-frontend-kk1j287dhjppmz437 \
               --parameter-overrides ID=kk1j287dhjppmz437  
 
@@ -52,7 +52,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
-              --tags project= 'cdond-c3-projectstarter' \
+              --tags project= cdond-c3-projectstarter \
               --stack-name udapeople-backend-kk1j287dhjppmz437 \
               --parameter-overrides ID=kk1j287dhjppmz437  
 
