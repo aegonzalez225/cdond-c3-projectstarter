@@ -46,21 +46,21 @@ jobs:
               --tags project=cdond-c3-projectstarter \
                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
                --parameter-overrides ID=kk1j287dhjppmz437  
-              exit 1
+
       - run:
           name: Ensure front-end infrastructure exist
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
               --tags project= cdond-c3-projectstarter \
-               --stack-name udapeople-backend-kk1j287dhjppmz437 \
-               --parameter-overrides ID=kk1j287dhjppmz437  
-              exit 1
+              --stack-name udapeople-backend-kk1j287dhjppmz437 \
+              --parameter-overrides ID=kk1j287dhjppmz437  
+
       - run:
           name: Add back-end ip to ansible inventory
           command: |
             # Your code here
-            exit 1
+            #exit 1
       - persist_to_workspace:
           root: ~/
           paths:
@@ -190,6 +190,3 @@ workflows:
 
         - deploy-infrastructure:
             requires: [test-backend, scan-frontend, scan-backend]
-            filters:
-                branches:
-                    only: [test-feature-branch]
