@@ -38,7 +38,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      -run:
+      - run:
           name: Delete stacks of aws services
           command: |
             if aws cloudformation wait stack-exists --stack-name udapeople-frontend-kk1j287dhjppmz437
