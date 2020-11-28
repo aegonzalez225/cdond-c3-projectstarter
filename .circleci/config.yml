@@ -74,7 +74,8 @@ jobs:
           command: |
             aws cloudformation deploy \
                 --template-file .circleci/files/backend.yml \
-                --stack-name "udapeople-backend-kk1j287dhjppmz437" \
+                --stack-name udapeople-backend-kk1j287dhjppmz437 \
+                --parameter-overrides ID=kk1j287dhjppmz437 \
                 --tags project=udapeople
                 exit 1
 
@@ -83,7 +84,8 @@ jobs:
           command: |
             aws cloudformation deploy \
                 --template-file .circleci/files/frontend.yml \
-                --stack-name "udapeople-frontend-kk1j287dhjppmz437" \
+                --stack-name udapeople-frontend-kk1j287dhjppmz437 \
+                --parameter-overrides ID=kk1j287dhjppmz437 \
                 --tags project=udapeople
                 exit 1
       - run:
